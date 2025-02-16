@@ -5,7 +5,7 @@ import morgan from 'morgan';
 import { connectDatabase } from './models/connect';
 import { errorMiddleware,apiLimiter } from './middleware';
 import route from './router';
-
+import cookieParser from 'cookie-parser'
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -21,6 +21,8 @@ app.use(
   }),
 );
 
+app.use(cookieParser());
+
 app.get('/', (req: Request, res: Response) => {
   res.send('Hello, Node.js với TypeScript!');
 });
@@ -35,6 +37,7 @@ connectDatabase();
 app.use((err: any, req: Request, res: Response, next: NextFunction) => {
   errorMiddleware(err, req, res, next);
 });
+
 
 app.listen(PORT, () => {
   console.log(`Server is running at http://localhost:${PORT}`);

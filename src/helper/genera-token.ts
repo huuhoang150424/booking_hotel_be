@@ -7,27 +7,27 @@ dotenv.config({ path: '.env.local' });
 const generaAccessToken = async (user:any) => {
   const tokenKey=process.env.ACCESS_TOKEN_KEY;
   if (!tokenKey) {
-    throw new TokenError(' không được định nghĩa trong file .env.local',404);
+    throw new TokenError('lỗi ',404);
   }
+	console.log(user)
   return jwt.sign(
     {
-      id: user._id,
-      isAdmin: user.isAdmin,
+      userId: user.userId,
+			role: user.user_roles[0].role.roleName
     },
     tokenKey,
-    { expiresIn: '30m' },
+    { expiresIn: '1d' },
   );
 };
 
 const generaRefreshToken = async (user:any) => {
-  const tokenKey=process.env.ACCESS_TOKEN_KEY;
+  const tokenKey=process.env.REFRESH_TOKEN_KEY;
   if (!tokenKey) {
-    throw new TokenError(' không được định nghĩa trong file .env.local',404);
+    throw new TokenError('lỗi ',404);
   }
   return jwt.sign(
     {
-      id: user._id,
-      isAdmin: user.isAdmin,
+      userId: user.userId
     },
     tokenKey,
     { expiresIn: '365d' },

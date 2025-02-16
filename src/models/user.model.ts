@@ -15,7 +15,7 @@ import Review  from './review.model';
 import SearchHistory  from './search-history.model';
 import Log  from './logs.model';
 import Notification  from './notification.model';
-
+import  UserRole from './user-role.model';
 
 
 @Table({
@@ -49,6 +49,9 @@ export default class User extends Model {
 
   @HasMany(() => Review)
   reviews!: Review[];
+
+	@HasMany(() => UserRole)
+  user_roles!: UserRole[];
 
   @HasMany(() => Log)
   logs!: Log[];
