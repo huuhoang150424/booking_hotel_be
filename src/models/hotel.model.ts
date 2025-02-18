@@ -38,23 +38,25 @@ export default class Hotel extends Model {
   @Column(DataType.TEXT)
   description!: string;
 
-  @AllowNull(false)
-  @Column(DataType.DECIMAL(3, 2))
-  rating!: number;
+	@AllowNull(false)
+  @Column(DataType.INTEGER)
+  maxRooms!: number; 
 
-  @ForeignKey(() => User)
+	@ForeignKey(() => User)
+  @AllowNull(false) 
   @Column(DataType.UUID)
   createdBy!: string;
 
-  @BelongsTo(() => User, 'createdBy')
+  @BelongsTo(() => User)
   createdByUser!: User;
 
   @ForeignKey(() => User)
+  @AllowNull(true) 
   @Column(DataType.UUID)
-  updatedBy!: string;
+  updatedBy?: string;
 
-  @BelongsTo(() => User, 'updatedBy')
-  updatedByUser!: User;
+  @BelongsTo(() => User)
+  updatedByUser?: User;
 
   @HasMany(() => Room)
   rooms!: Room[];

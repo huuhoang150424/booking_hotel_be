@@ -36,6 +36,12 @@ export default class User extends Model {
   @Column(DataType.STRING)
   email!: string;
 
+	@AllowNull(false)
+	@Default("https://img.freepik.com/premium-vector/user-icons-includes-user-icons-people-icons-symbols-premiumquality-graphic-design-elements_981536-526.jpg")
+	@Column(DataType.STRING)
+	avatar!: string;
+	
+
   @AllowNull(true)
   @Column(DataType.STRING)
   phone!: string;

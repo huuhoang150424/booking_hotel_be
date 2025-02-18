@@ -1,6 +1,7 @@
 import { transporter } from './send-mail';
 import ValidationError from "./error/validator-error";
 import UnauthorizedError from "./error/unauthorized-error";
+import InvalidInputError from "./error/invalid-input-error";
 import NotFoundError from "./error/notfound-error";
 import TokenError from "./error/token-error";
 import CacheRepository from "./cache.repository";
@@ -11,5 +12,6 @@ export {
   UnauthorizedError,
   TokenError,
 	transporter,
-	CacheRepository
+	CacheRepository,
+	InvalidInputError
 }

@@ -38,6 +38,12 @@ class AuthController {
       }
       const access_token = await generaAccessToken(user);
       const refresh_token = await generaRefreshToken(user);
+			const userData = {
+        id: user.userId,
+        name: user.name,
+        email: user.email
+      };
+
       if (!isMobile) {
         res.cookie('refreshToken', refresh_token, {
           httpOnly: true,
@@ -46,9 +52,9 @@ class AuthController {
           path: '/',
           maxAge: 7 * 24 * 60 * 60 * 1000,
         });
-        return res.status(200).json({ message: 'Đăng nhập thành công', user, access_token });
+        return res.status(200).json({ message: 'Đăng nhập thành công', userData, access_token });
       } else {
-        return res.status(200).json({ message: 'Đăng nhập thành công', user, access_token, refresh_token });
+        return res.status(200).json({ message: 'Đăng nhập thành công', userData, access_token, refresh_token });
       }
     } catch (error) {
       next(error);
