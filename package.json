@@ -23,6 +23,7 @@
 		"@types/node": "^22.13.2",
 		"@types/nodemailer": "^6.4.17",
 		"@types/sequelize": "^4.28.20",
+		"@types/uuid": "^10.0.0",
 		"@typescript-eslint/eslint-plugin": "^8.24.0",
 		"@typescript-eslint/parser": "^8.24.0",
 		"eslint": "^9.20.1",
@@ -53,6 +54,7 @@
 		"redis": "^4.7.0",
 		"reflect-metadata": "^0.2.2",
 		"sequelize": "^6.37.5",
-		"sequelize-typescript": "^2.1.6"
+		"sequelize-typescript": "^2.1.6",
+		"uuid": "^11.0.5"
 	}
 }

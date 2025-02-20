@@ -9,6 +9,7 @@ import {
   HasMany,
 } from 'sequelize-typescript';
 import  RoomAmenity  from './room-amenity.model';
+import { AmenityType } from '../helper/enums/amenity';
 
 @Table({
   tableName: 'amenities',
@@ -20,13 +21,9 @@ export default class Amenities extends Model {
   @Column(DataType.UUID)
   amenityId!: string;
 
-  @AllowNull(false)
-  @Column(DataType.STRING)
-  amenityName!: string;
-
-  @AllowNull(false)
-  @Column(DataType.STRING)
-  description!: string;
+	@AllowNull(false)
+  @Column(DataType.ENUM(...Object.values(AmenityType)))
+  amenityType!: AmenityType;
 
   @HasMany(() => RoomAmenity)
   roomAmenities!: RoomAmenity[];

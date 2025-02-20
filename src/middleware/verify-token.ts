@@ -22,7 +22,7 @@ const verifyToken = (req: Request, res: Response, next: NextFunction) => {
 
 const verifyAdmin=(req: Request, res: Response, next: NextFunction)=>{
 	verifyToken(req, res,()=>{
-		if ((req as any).user  &&  (req as any).user.role==="User") {
+		if ((req as any).user  &&  (req as any).user.role==="Admin") {
 			next();
 		} else {
 			throw new TokenError('Bạn không có quyền', 403);

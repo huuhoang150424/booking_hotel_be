@@ -29,12 +29,8 @@ export default class RoomDetail extends Model {
   room!: Room;
 
   @AllowNull(false)
-  @Column(DataType.STRING)
-  bedType!: string;
-
-  @AllowNull(false)
-  @Column(DataType.INTEGER)
-  numBeds!: number;
+  @Column(DataType.JSON)
+  bedConfig!: { [key: string]: number }; //JSON TYPE
 
   @AllowNull(false)
   @Column(DataType.INTEGER)

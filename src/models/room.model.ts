@@ -1,3 +1,4 @@
+import { RoomType,StatusRoom } from './../helper/enums/room';
 import {
   Table,
   Column,
@@ -31,34 +32,45 @@ export default class Room extends Model {
   @Column(DataType.UUID)
   hotelId!: string;
 
+	@AllowNull(false)
+  @Column(DataType.STRING)
+  name!: string;
+
   @BelongsTo(() => Hotel)
   hotel!: Hotel;
 
-  @AllowNull(false)
-  @Column(DataType.STRING)
-  roomType!: string;
+	@AllowNull(false)
+	@Column({
+		type: DataType.ENUM(...Object.values(RoomType)),
+	})
+	roomType!: RoomType;
 
   @AllowNull(false)
   @Column(DataType.DECIMAL(10, 2))
   price!: number;
 
-  @AllowNull(false)
-  @Column(DataType.STRING)
-  status!: string;
+	@AllowNull(false)
+	@Default(StatusRoom.AVAILABLE)
+	@Column({
+		type: DataType.ENUM(...Object.values(StatusRoom)),
+	})
+	status!: StatusRoom;
 
-  @ForeignKey(() => User)
-  @Column(DataType.UUID)
-  createdBy!: string;
+	@ForeignKey(() => User)
+	@AllowNull(false) 
+	@Column(DataType.UUID)
+	createdBy!: string;
 
-  @BelongsTo(() => User, 'createdBy')
-  createdByUser!: User;
+	@BelongsTo(() => User)
+	createdByUser!: User;
 
-  @ForeignKey(() => User)
-  @Column(DataType.UUID)
-  updatedBy!: string;
+	@ForeignKey(() => User)
+	@AllowNull(true) 
+	@Column(DataType.UUID)
+	updatedBy?: string;
 
-  @BelongsTo(() => User, 'updatedBy')
-  updatedByUser!: User;
+	@BelongsTo(() => User)
+	updatedByUser?: User;
 
   @HasMany(() => RoomAmenity)
   roomAmenities!: RoomAmenity[];
